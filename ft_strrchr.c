@@ -3,32 +3,48 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strrchr.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jabreu-d <jabreu-d@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jabreu-d <jabreu-d@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/10/28 16:52:25 by jabreu-d          #+#    #+#             */
-/*   Updated: 2022/10/31 12:48:09 by jabreu-d         ###   ########.fr       */
+/*   Created: 2022/10/29 12:53:32 by jabreu-d          #+#    #+#             */
+/*   Updated: 2022/10/29 12:53:32 by jabreu-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include <stdio.h>
+#include <string.h>
 
-char	*ft_strrchr(const char *str, int c)
+char	*ft_strrchr(const char *s, int c)
 {
-	int	i;
-
-	i = 0;
-	while (str[i])
+	int i = 0;
+	while (*s)
 	{
+		printf("i: %d | s: %s\n", i, s);
+		s++;
 		i++;
 	}
-	while (str[i] != '\0' && c != str[i])
+	while (i >= 0)
+	{
+		printf("i: %d | s: %s\n", i, s);
+		if (*s == c)
+		{
+			return ((char *)s);
+		}
+		s--;
 		i--;
-	if (c == str[i])
-		return ((char *)&str[i]);
+	}
+		
 	return (0);
 }
 
-int	main(void)
-{
-	printf("%s\n", ft_strrchr("Hello World", 'W'));
-}
+/*int main () {
+   int len;
+   const char str[] = "http://www.google.pt";
+   const char ch = '.';
+   char *ret;
+
+   ret = strrchr(str, ch);
+
+   printf("String after |%c| is - |%s|\n", ch, ret);
+   
+   return(0);
+}*/
