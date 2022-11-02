@@ -1,43 +1,37 @@
-#include <stdio.h>
-#include <string.h>
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_strnstr.c                                       :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: jabreu-d <jabreu-d@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/11/02 15:49:01 by jabreu-d          #+#    #+#             */
+/*   Updated: 2022/11/02 16:07:24 by jabreu-d         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
-char    *ft_strnstr(const char *big, const char *lit, size_t len)
+#include "libft.h"
+
+char	*ft_strnstr(const char *haystack, const char *needle, size_t len)
 {
-    size_t    ib;
-    size_t    il;
-    size_t    sizelit;
-    size_t    sizebig;
+	size_t	h;
+	size_t	n;
 
-    ib = 0;
-    il = 0;
-    sizelit = strlen(lit);
-    sizebig = strlen(big);
-    if (lit == "")
-    {
-        return ((char *)big);
-    }
-    while (big[ib] && len > 0)
-    {
-        if (big[ib] == lit[il])
-        {
-            if (il + 1 == sizelit)
-            {
-                return ((char *)&big[ib - 1]);
-            }
-            il++;
-        }
-        else if (big[ib - 1] == lit[il - 1])
-        {
-            il = 0;
-        }
-        ib++;
-        len--;
-    }
-    return (0);
-}
-
-
-int	main(void)
-{
-	printf("%s\n", ft_strnstr("Hello World . AIai", "AI", 2));
+	h = 0;
+	if (needle[0] == '\0' || len == 0)
+		return ((char *)haystack);
+	while (haystack[h] != '\0')
+	{
+		n = 0;
+		while (haystack[h + n] == needle[n] && (h + n) < len)
+		{
+			if (haystack[h + n] == '\0' && needle[n] == '\0')
+				return ((char *)&haystack[h]);
+			n++;
+		}
+		if (needle[n] == '\0')
+			return ((char *)haystack + h);
+		h++;
+	}
+	return (0);
 }
