@@ -1,36 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strtrim.c                                       :+:      :+:    :+:   */
+/*   ft_putendl_fd.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jabreu-d <jabreu-d@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/11/07 15:21:10 by jabreu-d          #+#    #+#             */
-/*   Updated: 2022/11/07 17:47:24 by jabreu-d         ###   ########.fr       */
+/*   Created: 2022/11/07 16:02:48 by jabreu-d          #+#    #+#             */
+/*   Updated: 2022/11/07 16:07:56 by jabreu-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-char	*ft_strtrim(char const *s1, char const *set)
+void	ft_putendl_fd(char *s, int fd)
 {
-	char	*trim;
-	int		i;
-	int		j;
-
-	if (!s1 || !set)
-		return (0);
-	//trim = malloc((ft_strlen(s1) + 1) * 1);
-	if (!trim)
-		return (0);
-	i = 0;
-	j = 0;
-	while (set[j] && s1[i])
-	{
-				
-	}
+	if (!s)
+		return ;
+	write(fd, s, ft_strlen(s));
+	write(fd, "\n", 1);
 }
-/*int	main(void)
-{
-	printf("%s\n",ft_strtrim("Helloab  ", "ab"));
-}*/
