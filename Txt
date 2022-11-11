@@ -1,0 +1,4 @@
+Download Francinette to test.
+42 Header Plugin
+42 Norminette Highlighter 3x Plugin
+Mintlify Plugin
