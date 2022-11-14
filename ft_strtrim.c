@@ -6,7 +6,7 @@
 /*   By: jabreu-d <jabreu-d@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/07 15:21:10 by jabreu-d          #+#    #+#             */
-/*   Updated: 2022/11/07 17:47:24 by jabreu-d         ###   ########.fr       */
+/*   Updated: 2022/11/10 18:02:36 by jabreu-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,23 +14,14 @@
 
 char	*ft_strtrim(char const *s1, char const *set)
 {
-	char	*trim;
-	int		i;
-	int		j;
+	size_t	i;
 
 	if (!s1 || !set)
 		return (0);
-	//trim = malloc((ft_strlen(s1) + 1) * 1);
-	if (!trim)
-		return (0);
-	i = 0;
-	j = 0;
-	while (set[j] && s1[i])
-	{
-				
-	}
+	while (*s1 && ft_strchr(set, *s1))
+		s1++;
+	i = ft_strlen(s1);
+	while (i && ft_strchr(set, s1[i]))
+		i--;
+	return (ft_substr(s1, 0, i + 1));
 }
-/*int	main(void)
-{
-	printf("%s\n",ft_strtrim("Helloab  ", "ab"));
-}*/

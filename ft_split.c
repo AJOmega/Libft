@@ -6,66 +6,85 @@
 /*   By: jabreu-d <jabreu-d@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/11 15:18:11 by jabreu-d          #+#    #+#             */
-/*   Updated: 2022/11/11 18:51:27 by jabreu-d         ###   ########.fr       */
+/*   Updated: 2022/11/14 16:43:41 by jabreu-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-static	size_t	ft_count_words(char *str, char c)
+static int	wordcount(const char *str, char c)
 {
-	size_t	i;
-	size_t	p;
+	int	i;
 
 	i = 0;
-	p = 0;
-	while (str[i])
+	while (*str)
 	{
-		if (str[i] != c)
+		if (*str != c)
+		{
+			while (*str && *str != c)
+				str++;
 			i++;
-		else
-			p++;
+		}
+		while (*str == c && *str)
+			str++;
 	}
-	return (p * i);
+	return (i);
+}
+
+static char	*worddup(const char *str, int start, int end)
+{
+	char	*word;
+	int		i;
+
+	i = 0;
+	word = malloc((end - start + 1) * sizeof(char));
+	while (start < end && *str)
+	{
+		word[i] = str[start];
+		i++;
+		start++;
+	}
+	word[i] = '\0';
+	return (word);
+}
+
+int	protect(char const *s, char c)
+{
+	char	**split;
+
+	if (!s)
+		return (0);
+	split = malloc((wordcount(s, c) + 1) * sizeof(char *));
+	if (!split)
+		return (0);
+	free (split);
+	return (1);
 }
 
 char	**ft_split(char const *s, char c)
 {
-	size_t	j;
-	size_t	p;
+	char	**split;
 	size_t	i;
-	char	**sp;
+	size_t	j;
+	int		index;
 
-	j = 0;
-	p = 0;
+	if (protect(s, c) == 0)
+		return (0);
+	split = malloc((wordcount(s, c) + 1) * sizeof(char *));
 	i = 0;
-	//sp = (char *)malloc(ft_count_words(s, c + 1) * sizeof(char *));
-	sp = malloc(1000 * sizeof(char *));
-	if (!sp)
-		return (NULL);
-	sp[0] = malloc(1000);
-	while (s[j])
+	j = 0;
+	index = -1;
+	while (i <= ft_strlen((char *)s) && *s)
 	{
-		if (s[j] == c)
+		if (s[i] != c && index < 0)
+			index = i;
+		else if ((s[i] == c || i == ft_strlen((char *)s)) && index >= 0)
 		{
-			sp[p][i] = '\0';
-			p++;
-			sp[p] = malloc(1000);
-			i = 0;
+			split[j++] = worddup(s, index, i);
+			index = -1;
 		}
-		sp[p][i] = s[j];
 		i++;
-		j++;
 	}
-	sp[p] = NULL;
-	free(sp);
-	return (sp);
-}
-
-int	main(void)
-{
-	char s[] = "Hello World Pao com manteiga";
-	char c = ' ';
-	
-	printf("%s\n",(s, c));
+	split[j] = NULL;
+	return (split);
 }

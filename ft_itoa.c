@@ -6,20 +6,14 @@
 /*   By: jabreu-d <jabreu-d@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/10 14:35:44 by jabreu-d          #+#    #+#             */
-/*   Updated: 2022/11/10 16:41:53 by jabreu-d         ###   ########.fr       */
+/*   Updated: 2022/11/14 16:38:35 by jabreu-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-char	*ft_itoa(int n)
+static char	*ft_protect(char *str, int n)
 {
-	char	*str;
-	int		nbr;
-	int		i;
-	int		sign;
-	int		max;
-
 	if (!n)
 	{
 		str = malloc(2);
@@ -32,17 +26,14 @@ char	*ft_itoa(int n)
 		str = ft_strdup("-2147483648");
 		return (str);
 	}
-	if (n < 0)
-	{
-		i = 2;
-		n *= -1;
-		sign = 1;
-	}
-	else
-	{
-		i = 1;
-		sign = 0;
-	}
+	return (0);
+}
+
+static char	*ft_25max(int n, int i, char *str, int sign)
+{
+	int	max;
+	int	nbr;
+
 	nbr = n;
 	while (nbr > 9)
 	{
@@ -55,7 +46,6 @@ char	*ft_itoa(int n)
 		return (0);
 	if (sign == 1)
 		str[0] = '-';
-	i = 0;
 	i = max;
 	while (n > 9)
 	{
@@ -68,6 +58,31 @@ char	*ft_itoa(int n)
 	return (str);
 }
 
+char	*ft_itoa(int n)
+{
+	char	*str;
+	int		i;
+	int		sign;
+
+	str = NULL;
+	str = ft_protect(str, n);
+	if (str != NULL)
+		return (str);
+	if (n < 0)
+	{
+		i = 2;
+		n *= -1;
+		sign = 1;
+	}
+	else
+	{
+		i = 1;
+		sign = 0;
+	}
+	str = ft_25max(n, i, str, sign);
+	return (str);
+}
+
 /*int main(void)
 {
 	char *i1 = ft_itoa(-623);
@@ -77,4 +92,4 @@ char	*ft_itoa(int n)
 	printf("%d\n", strcmp(i2, 156));
 	printf("%d\n", strcmp(i3, -0));
   printf("%s\n",ft_itoa(0));
-}*/
+}*/	

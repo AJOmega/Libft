@@ -6,7 +6,7 @@
 /*   By: jabreu-d <jabreu-d@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/27 15:18:46 by jabreu-d          #+#    #+#             */
-/*   Updated: 2022/11/11 19:38:51 by jabreu-d         ###   ########.fr       */
+/*   Updated: 2022/11/14 15:37:31 by jabreu-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -142,5 +142,5 @@ char	*ft_itoa(int n);
  * @return A pointer to a new string.
  */
 char	*ft_strmapi(char const *s, char (*f)(unsigned int, char));
-
+char	**ft_split(char const *s, char c);
 #endif

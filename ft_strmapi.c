@@ -6,12 +6,11 @@
 /*   By: jabreu-d <jabreu-d@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/10 16:44:11 by jabreu-d          #+#    #+#             */
-/*   Updated: 2022/11/11 14:46:45 by jabreu-d         ###   ########.fr       */
+/*   Updated: 2022/11/14 16:45:02 by jabreu-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
-
 
 char	*ft_strmapi(char const *s, char (*f)(unsigned int, char))
 {
