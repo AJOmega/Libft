@@ -116,7 +116,6 @@ char	*ft_strjoin(char const *s1, char const *s2);
 void	ft_putchar_fd(char c, int fd);
 void	ft_putstr_fd(char *s, int fd);
 void	ft_putendl_fd(char *s, int fd);
-//void	ft_putnbr_fd(int nb, int fd);
 /**
  * Iterate through the string s, applying the function 
  * f to each character, passing the index of the
@@ -127,6 +126,7 @@ void	ft_putendl_fd(char *s, int fd);
  * 
  * @return Nothing.
  */
+void	ft_putnbr_fd(int nb, int fd);
 void	ft_striteri(char *s, void (*f)(unsigned int, char*));
 char	*ft_itoa(int n);
 /**
