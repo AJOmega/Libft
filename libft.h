@@ -6,7 +6,7 @@
 /*   By: jabreu-d <jabreu-d@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/27 15:18:46 by jabreu-d          #+#    #+#             */
-/*   Updated: 2022/11/14 15:37:31 by jabreu-d         ###   ########.fr       */
+/*   Updated: 2022/11/16 17:46:48 by jabreu-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -116,6 +116,7 @@ char	*ft_strjoin(char const *s1, char const *s2);
 void	ft_putchar_fd(char c, int fd);
 void	ft_putstr_fd(char *s, int fd);
 void	ft_putendl_fd(char *s, int fd);
+void	ft_putnbr_fd(int nb, int fd);
 /**
  * Iterate through the string s, applying the function 
  * f to each character, passing the index of the
@@ -126,7 +127,6 @@ void	ft_putendl_fd(char *s, int fd);
  * 
  * @return Nothing.
  */
-void	ft_putnbr_fd(int nb, int fd);
 void	ft_striteri(char *s, void (*f)(unsigned int, char*));
 char	*ft_itoa(int n);
 /**
@@ -143,4 +143,15 @@ char	*ft_itoa(int n);
  */
 char	*ft_strmapi(char const *s, char (*f)(unsigned int, char));
 char	**ft_split(char const *s, char c);
+
+typedef struct s_list
+{
+	void			*content;
+	struct s_list	*next;
+}					t_list;
+
+t_list	*ft_lstnew(void *content);
+void	ft_lstadd_front(t_list **lst, t_list *new);
+int		ft_lstsize(t_list *lst);
+
 #endif
